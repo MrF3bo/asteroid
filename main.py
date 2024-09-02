@@ -3,6 +3,7 @@
 # throughout this file
 import pygame
 from constants import *
+from  player import *
 
 def main():
     pygame.init
@@ -11,18 +12,23 @@ def main():
     clock = pygame.time.Clock()
     dt = 0
 
+    player = Player(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2,)
+
     # Game loop
     while True:
         # Create functionality to exit out of the game
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 return
-        # Creating a window with a black background
-        screen.fill((0,0,0))
+
+        screen.fill("black")
+        player.draw(screen)
         pygame.display.flip()
+        
         
         # Limiting framerate to 60 fps
         dt = clock.tick(60) / 1000
+
 
 
 if __name__ == "__main__":
