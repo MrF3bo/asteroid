@@ -7,10 +7,12 @@ from asteroidfield import AsteroidField
 from shot import Shot
 
 def main():
-    pygame.init
+    pygame.init()
     screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
     clock = pygame.time.Clock()
     dt = 0
+    score = 0
+    scorefont = pygame.font.Font(None, 36)
 
     # Groups
     updatable = pygame.sprite.Group()
@@ -35,6 +37,9 @@ def main():
             if event.type == pygame.QUIT:
                 return
         screen.fill("black")
+        # Display score
+        score_text = scorefont.render(f'Score: {score}', True, (255,255,255))
+        screen.blit(score_text, (10,10))
 
         for item in updatable:
             item.update(dt)
@@ -43,6 +48,13 @@ def main():
                 if asteroid.collision(shot):
                     asteroid.split()
                     shot.kill()
+                    # Scoring system
+                    if asteroid.radius == 20:
+                        score += 25
+                    elif asteroid.radius == 40:
+                        score += 100
+                    elif asteroid.radius == 60:
+                        score += 250
             if asteroid.collision(player):
                 print("Game over!")
                 exit()            
