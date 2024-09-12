@@ -7,7 +7,7 @@ from asteroidfield import AsteroidField
 from shot import Shot
 
 def main():
-    pygame.init
+    pygame.init()
     screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
     clock = pygame.time.Clock()
     dt = 0
